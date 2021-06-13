@@ -1,0 +1,98 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
+    id 'kotlinx-serialization'
+}
+
+android {
+    compileSdkVersion 30
+
+    defaultConfig {
+        applicationId "com.amityadav.kreditbeeandroidsample"
+        minSdkVersion 16
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+        buildConfigField 'String', 'BASE_URL', '"https://jsonplaceholder.typicode.com/"'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        dataBinding {
+            enabled = true
+        }
+    }
+}
+
+dependencies {
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
+    implementation 'androidx.core:core-ktx:1.5.0'
+    implementation Libraries.appcompat
+    implementation Libraries.constraintlayout
+    implementation(Libraries.epoxy) { exclude group: "com.android.support" }
+    implementation Libraries.lifecycleCommon
+    implementation Libraries.moshi
+    implementation Libraries.moshiKotlin
+    implementation Libraries.multidex
+    implementation Libraries.navigationFragmentKtx
+    implementation Libraries.navigationUiKtx
+    implementation Libraries.recyclerview
+    implementation Libraries.retrofit
+    implementation Libraries.retrofitMoshi
+    implementation Libraries.retrofitRxJava
+    implementation Libraries.rxAndroid
+    implementation Libraries.rxJava
+    implementation Libraries.dagger
+    implementation Libraries.daggerAssisted
+    implementation Libraries.mvrx
+    implementation Libraries.loggingInterceptor
+    implementation Libraries.converterGson
+    implementation Libraries.koinCore
+    implementation Libraries.koinAndroid
+    implementation Libraries.koinViewModel
+    implementation Libraries.koinArchitecture
+    implementation Libraries.googleMaterial
+    implementation Libraries.facebookFresco
+    implementation Libraries.koinScope
+    implementation Libraries.liveData
+    implementation Libraries.shimmer
+    implementation Libraries.swipeRefresh
+    implementation(Libraries.timber)
+    implementation Libraries.prDownloader
+    implementation Libraries.snapHelper
+    implementation Libraries.ktxViewModel
+    implementation Libraries.viewModelSavedState
+
+    implementation (Libraries.epoxyDataBinding) { exclude group: "com.android.support" }
+    implementation Libraries.constraintlayout
+    kapt AnnotationProcessors.epoxy
+
+    implementation Libraries.workRuntime
+    implementation Libraries.workRuntimeKtx
+
+    kapt AnnotationProcessors.moshi
+    implementation(Libraries.startup)
+
+    testImplementation TestLibraries.junit
+}
